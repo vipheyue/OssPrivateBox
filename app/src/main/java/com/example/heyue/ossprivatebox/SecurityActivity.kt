@@ -57,6 +57,7 @@ class SecurityActivity : AppCompatActivity() {
     }
 
     private fun startBrowse() {
+//        appPwd ="999"
         AppConfig.bucketName = et_bucketName.text.toString().trim()
         AppConfig.endpoint = et_endpoint.text.toString().trim()
         AppConfig.asscessKey = et_asscessKey.text.toString().trim()
