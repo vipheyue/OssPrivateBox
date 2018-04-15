@@ -13,11 +13,24 @@
         android:layout_height="wrap_content"
         android:hint="请输入 bucket的名字 就是自己在 oss 创建的名字" />
 
-    <Button
-        android:id="@+id/btn_browse_endpoint"
-        android:layout_width="wrap_content"
-        android:text="查看节点域名"
-        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btn_browse_endpoint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="查看节点域名" />
+
+        <Button
+            android:id="@+id/btn_rest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="清空所有配置" />
+    </LinearLayout>
+
     <EditText
         android:id="@+id/et_endpoint"
         android:layout_width="match_parent"
@@ -29,24 +42,24 @@
         android:id="@+id/et_asscessKey"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:hint="请输入 asscessKey 点击阿里云右上角 个人头像" />
+        android:hint="请输入 asscessKey 点击阿里云右上角 个人头像"
+        android:inputType="textPassword" />
 
     <EditText
         android:id="@+id/et_screctKey"
         android:layout_width="match_parent"
-        android:inputType="textPassword"
         android:layout_height="wrap_content"
-        android:hint="请输入 screctKey 点击阿里云右上角 个人头像" />
+        android:hint="请输入 screctKey 点击阿里云右上角 个人头像"
+        android:inputType="textPassword" />
 
 
     <EditText
         android:id="@+id/et_appPwd"
         android:layout_width="match_parent"
-        android:inputType="numberPassword"
         android:layout_height="wrap_content"
+        android:hint="输入一个 APP 密码,只有你能打开,如果忘记请点击重置"
         android:imeOptions="actionDone"
-        android:hint="输入一个 APP 密码,只有你能打开,如果忘记请点击重置" />
+        android:inputType="numberPassword" />
 
     <Button
         android:id="@+id/btn_start"
@@ -55,10 +68,4 @@
         android:text="进入我的私人网盘" />
 
 
-
-    <Button
-        android:id="@+id/btn_rest"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="清空所有配置" />
 </LinearLayout>
