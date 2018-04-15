@@ -44,7 +44,7 @@
         android:id="@+id/et_appPwd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="设置一个 APP 密码,只有你能打开,如果忘记请点击重置" />
+        android:hint="输入一个 APP 密码,只有你能打开,如果忘记请点击重置" />
 
     <Button
         android:id="@+id/btn_start"
