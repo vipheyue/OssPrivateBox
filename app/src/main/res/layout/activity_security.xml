@@ -12,12 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="请输入 bucket的名字 就是自己在 oss 创建的名字" />
+
     <Button
         android:id="@+id/btn_browse_endpoint"
         android:layout_width="wrap_content"
         android:text="查看节点域名"
         android:layout_height="wrap_content" />
-
     <EditText
         android:id="@+id/et_endpoint"
         android:layout_width="match_parent"
@@ -43,7 +43,9 @@
     <EditText
         android:id="@+id/et_appPwd"
         android:layout_width="match_parent"
+        android:inputType="numberPassword"
         android:layout_height="wrap_content"
+        android:imeOptions="actionDone"
         android:hint="输入一个 APP 密码,只有你能打开,如果忘记请点击重置" />
 
     <Button
@@ -51,6 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="进入我的私人网盘" />
+
 
 
     <Button
