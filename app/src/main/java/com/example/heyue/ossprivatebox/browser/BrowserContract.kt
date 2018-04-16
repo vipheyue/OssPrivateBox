@@ -20,8 +20,6 @@ import com.alibaba.sdk.android.oss.callback.OSSCompletedCallback
 import com.alibaba.sdk.android.oss.callback.OSSProgressCallback
 import com.alibaba.sdk.android.oss.model.GetObjectRequest
 import com.alibaba.sdk.android.oss.model.GetObjectResult
-import com.alibaba.sdk.android.oss.model.ListObjectsRequest
-import com.alibaba.sdk.android.oss.model.ListObjectsResult
 import com.example.android.architecture.blueprints.todoapp.BasePresenter
 import com.example.android.architecture.blueprints.todoapp.BaseView
 
@@ -39,6 +37,7 @@ interface BrowserContract {
         fun getCurrentFilesAndDirs(prefix: String)
         fun downFile(fileName: String, progressListener: OSSProgressCallback<GetObjectRequest>, callback: OSSCompletedCallback<GetObjectRequest, GetObjectResult>)
         fun downPic(fileName: String,  callback: OSSCompletedCallback<GetObjectRequest, GetObjectResult>)
+        fun getConstrainedUrl(fileName: String):String
     }
 
 }

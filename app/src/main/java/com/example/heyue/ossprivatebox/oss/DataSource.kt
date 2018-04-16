@@ -14,6 +14,6 @@ interface DataSource {
     fun getCurrentFilesAndDirs(prefix: String, callback: OSSCompletedCallback<ListObjectsRequest, ListObjectsResult>)
     fun downFile(fileName: String, progressListener: OSSProgressCallback<GetObjectRequest>, callback: OSSCompletedCallback<GetObjectRequest, GetObjectResult>)
     fun downPic(fileName: String,  callback: OSSCompletedCallback<GetObjectRequest, GetObjectResult>)
-
+    fun getConstrainedUrl(fileName: String):String
 
 }

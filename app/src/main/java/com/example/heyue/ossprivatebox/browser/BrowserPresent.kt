@@ -12,6 +12,10 @@ import com.alibaba.sdk.android.oss.model.ListObjectsResult
 import com.example.heyue.ossprivatebox.oss.DataSource
 
 class BrowserPresent(var dataRepository: DataSource, val universalView: BrowserContract.View) : BrowserContract.Presenter {
+    override fun getConstrainedUrl(fileName: String): String {
+        return dataRepository.getConstrainedUrl(fileName)
+    }
+
     override fun getCurrentFilesAndDirs(prefix: String) {
         dataRepository.getCurrentFilesAndDirs(prefix, object : OSSCompletedCallback<ListObjectsRequest, ListObjectsResult> {
             override fun onSuccess(request: ListObjectsRequest, result: ListObjectsResult) {
@@ -19,7 +23,29 @@ class BrowserPresent(var dataRepository: DataSource, val universalView: BrowserC
                 var arrayList = ArrayList<MultipleItem>()
 
                 for (objectSummary in result.objectSummaries) {
-                    arrayList.add(MultipleItem(objectSummary.key, MultipleItem.IMG))
+                    var pngFilter = objectSummary.key.endsWith("png",true)
+                    var jpgFilter = objectSummary.key.endsWith("jpg",true)
+                    var jpegFilter = objectSummary.key.endsWith("jpeg",true)
+                    if (pngFilter||jpgFilter||jpegFilter) {
+                        arrayList.add(MultipleItem(objectSummary.key, MultipleItem.IMG))
+                        continue
+                    }
+
+                    var mp4Filter = objectSummary.key.endsWith("mp4",true)
+                    var movieFilter = objectSummary.key.endsWith("MOV",true)
+                    if (mp4Filter || movieFilter) {
+                        arrayList.add(MultipleItem(objectSummary.key, MultipleItem.MOVIE))
+                        continue
+                    }
+
+                    var mp3Filter = objectSummary.key.endsWith("mp3",true)
+                    var m4aFilter = objectSummary.key.endsWith("m4a",true)
+                    if (mp3Filter || m4aFilter) {
+                        arrayList.add(MultipleItem(objectSummary.key, MultipleItem.MUSIC))
+                        continue
+                    }
+
+                    arrayList.add(MultipleItem(objectSummary.key, MultipleItem.OTHER))
                 }
                 for (commonPrefix in result.commonPrefixes) {
                     arrayList.add(MultipleItem(commonPrefix, MultipleItem.DIR))
@@ -54,8 +80,6 @@ class BrowserPresent(var dataRepository: DataSource, val universalView: BrowserC
     }
 
     override fun start() {
-        //准备数据
-        getCurrentFilesAndDirs("")
     }
 
 

@@ -13,14 +13,21 @@ import com.alibaba.sdk.android.oss.model.GetObjectRequest
 import com.alibaba.sdk.android.oss.model.GetObjectResult
 import com.alibaba.sdk.android.oss.model.ListObjectsRequest
 import com.alibaba.sdk.android.oss.model.ListObjectsResult
+import com.example.heyue.ossprivatebox.AppConfig
 
 
 class DataRepository(internal var ctx: Context, internal var endpoint: String, internal var bucketName: String) : DataSource {
+    override fun getConstrainedUrl(fileName: String): String {
+        val url = client.presignConstrainedObjectURL(bucketName, fileName, 3 * 60)
+        return url
+    }
+
     override fun downPic(fileName: String, callback: OSSCompletedCallback<GetObjectRequest, GetObjectResult>) {
         // 构造图片下载请求
         val get = GetObjectRequest(bucketName, fileName)
 // 图片处理
-        get.setxOssProcess("image/resize,m_fixed,w_100,h_100")
+//        get.setxOssProcess("image/resize,m_fixed,w_500,h_500")
+        get.setxOssProcess("image/resize,m_lfit,w_1000,h_1000")
         val task = client.asyncGetObject(get, callback)
 
     }
@@ -30,7 +37,7 @@ class DataRepository(internal var ctx: Context, internal var endpoint: String, i
         val get = GetObjectRequest(bucketName, fileName)
 //设置下载进度回调
         get.setProgressListener(progressListener)
-        val task = client.asyncGetObject(get,callback)
+        val task = client.asyncGetObject(get, callback)
 
     }
 
@@ -108,7 +115,7 @@ class DataRepository(internal var ctx: Context, internal var endpoint: String, i
         get() {
             val provider = object : OSSCustomSignerCredentialProvider() {
                 override fun signContent(content: String): String {
-                    return  null;
+                    return OSSUtils.sign(AppConfig.asscessKey, AppConfig.screctKey, content)
                 }
             }
 

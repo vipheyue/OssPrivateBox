@@ -11,7 +11,6 @@ import com.alibaba.sdk.android.oss.model.GetObjectRequest
 import com.alibaba.sdk.android.oss.model.GetObjectResult
 import com.alibaba.sdk.android.oss.model.ListObjectsRequest
 import com.alibaba.sdk.android.oss.model.ListObjectsResult
-import com.example.heyue.ossprivatebox.browser.AppConfig
 import com.example.heyue.ossprivatebox.oss.DataRepository
 import org.junit.Assert.assertEquals
 import org.junit.Test
